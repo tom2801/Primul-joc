@@ -16,7 +16,7 @@ public class SphGen2 : MonoBehaviour
         Vector3 spherePoz = mazga.getCorner();
         // Generate a new sphere at the specified position
         GameObject sphere = SphereScript.CreateSphere(spherePoz, sphereSize);
-
+        sphere.tag = "Player";
 
  
     }

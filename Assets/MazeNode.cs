@@ -6,13 +6,45 @@ public enum NodeState
 {
     Available,
     Current,
-    Completed
+    Completed,
+    Victory
 }
 
 public class MazeNode : MonoBehaviour
 {
     [SerializeField] GameObject[] walls;
     [SerializeField] MeshRenderer floor;
+    bool triggersVictory = false;
+
+    public bool TriggersVictory()
+    {
+        return triggersVictory;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("colziiune nod");
+        if(triggersVictory)
+        {
+            Debug.Log("coliziune nod victorie");
+
+            if (collision.gameObject.tag == "Player")
+            {
+                Debug.Log("coliziune sfera");
+                Destroy(collision.gameObject);
+
+
+                GameObject otherObject = GameObject.Find("Maze Generator");
+                
+                otherObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+                MazeGenerator mazga = otherObject.GetComponent<MazeGenerator>();
+                Vector3 spherePoz = mazga.getCorner();
+                // Generate a new sphere at the specified position
+                GameObject sphere = SphereScript.CreateSphere(spherePoz, new Vector3(0.5f,0.5f,0.5f));
+                sphere.tag = "Player";
+            }
+        }
+    }
 
     public void RemoveWall(int wallToRemove)
     {
@@ -33,6 +65,12 @@ public class MazeNode : MonoBehaviour
             case NodeState.Completed:
                 floor.material.color = Color.blue;
                 break;
+            case NodeState.Victory:
+                floor.material.color=Color.green;
+                this.triggersVictory = true;    
+                break;
+
+
 
         }
     }

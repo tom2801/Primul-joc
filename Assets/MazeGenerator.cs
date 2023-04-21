@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using Unity.VisualScripting;
 
 public class MazeGenerator : MonoBehaviour
 {
@@ -22,6 +24,18 @@ public class MazeGenerator : MonoBehaviour
         else corner = new Vector3(-0.5f - mazeSize.x / 2, 1, -0.5f - mazeSize.y / 2);
         return corner;
     }
+
+    public Vector3 getVictoryCorner()
+    {
+        Vector3 corner;
+        if (mazeSize.x % 2 == 0)
+            corner = new Vector3(mazeSize.x / 2, 1, mazeSize.y / 2);
+
+        else corner = new Vector3(0.5f + mazeSize.x / 2, 1, 0.5f + mazeSize.y / 2);
+        return corner;
+    }
+
+
     private void Update()
     {
         float zRotation = this.transform.eulerAngles.z;
@@ -191,6 +205,8 @@ public class MazeGenerator : MonoBehaviour
                 currentPath.RemoveAt(currentPath.Count - 1);
             }
         }
+        nodes.Last().SetState(NodeState.Victory);
+        nodes.Last().AddComponent<BoxCollider>();   
     }
 
     IEnumerator GenerateMaze(Vector2Int size)
@@ -303,9 +319,12 @@ public class MazeGenerator : MonoBehaviour
 
                 currentPath[currentPath.Count - 1].SetState(NodeState.Completed);
                 currentPath.RemoveAt(currentPath.Count - 1);
+               
+
             }
 
             yield return new WaitForSeconds(0.05f);
         }
     }
+   
 }
