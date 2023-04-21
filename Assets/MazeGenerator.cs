@@ -7,13 +7,21 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] MazeNode nodePrefab;
     [SerializeField] Vector2Int mazeSize;
     [SerializeField] float nodeSize;
-    float velocity = 30;
+    [SerializeField] float velocity = 50;
     private void Start()
     {
         GenerateMazeInstant(mazeSize);
         //StartCoroutine(GenerateMaze(mazeSize));
     }
+    public Vector3 getCorner()
+    {
+        Vector3 corner;
+        if (mazeSize.x % 2 == 0)
+            corner = new Vector3(-mazeSize.x / 2, 1, -mazeSize.y / 2);
 
+        else corner = new Vector3(-0.5f - mazeSize.x / 2, 1, -0.5f - mazeSize.y / 2);
+        return corner;
+    }
     private void Update()
     {
         float zRotation = this.transform.eulerAngles.z;
