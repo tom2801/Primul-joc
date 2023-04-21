@@ -7,11 +7,70 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] MazeNode nodePrefab;
     [SerializeField] Vector2Int mazeSize;
     [SerializeField] float nodeSize;
-
+    float velocity = 30;
     private void Start()
     {
         GenerateMazeInstant(mazeSize);
         //StartCoroutine(GenerateMaze(mazeSize));
+    }
+
+    private void Update()
+    {
+        float zRotation = this.transform.eulerAngles.z;
+        float xRotation = this.transform.eulerAngles.x;
+        float yRotation = this.transform.eulerAngles.y;
+
+        if((int)zRotation == 35)
+        {
+            zRotation = 34.9f;
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation) ;
+        }
+
+        if ((int)zRotation == 325)
+        {
+            zRotation = 326f;
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
+        }
+
+        if ((int)xRotation == 35)
+        {
+            xRotation = 34.9f;
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
+        }
+
+        if ((int)xRotation == 325)
+        {
+            xRotation = 326f;
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow) && (zRotation < 35 || zRotation > 325))
+        {   
+           
+            transform.Rotate(Vector3.forward * velocity * Time.deltaTime);
+
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow) && (zRotation < 35 || zRotation > 325))
+        {
+            transform.Rotate(-Vector3.forward * velocity * Time.deltaTime);
+
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow) && (xRotation <35 || xRotation > 325))
+        {
+            //transform.Rotate(Vector3.right * velocity * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(xRotation+velocity*
+                Time.deltaTime,yRotation,zRotation);
+
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow) && (xRotation <= 35 || xRotation >= 325))
+        {
+            //transform.Rotate(-Vector3.right * velocity * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(xRotation + -velocity *
+                Time.deltaTime, yRotation, zRotation);
+        }
     }
 
     void GenerateMazeInstant(Vector2Int size)
