@@ -15,10 +15,15 @@ public class MazeNode : MonoBehaviour
     [SerializeField] GameObject[] walls;
     [SerializeField] MeshRenderer floor;
     bool triggersVictory = false;
-
+    bool isOver = false;
     public bool TriggersVictory()
     {
         return triggersVictory;
+    }
+
+    public bool gameEnd()
+    {
+        return isOver;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -31,9 +36,10 @@ public class MazeNode : MonoBehaviour
             {
                 Debug.Log("coliziune sfera");
                 Destroy(collision.gameObject);
+                
+                isOver = true;
 
-
-                GameObject otherObject = GameObject.Find("Maze Generator");
+                /*GameObject otherObject = GameObject.Find("Maze Generator");
                 
                 otherObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 
@@ -41,7 +47,7 @@ public class MazeNode : MonoBehaviour
                 Vector3 spherePoz = mazga.getCorner();
                 // Generate a new sphere at the specified position
                 GameObject sphere = SphereScript.CreateSphere(spherePoz, new Vector3(0.5f,0.5f,0.5f));
-                sphere.tag = "Player";
+                sphere.tag = "Player";*/
             }
         }
     }
@@ -67,7 +73,8 @@ public class MazeNode : MonoBehaviour
                 break;
             case NodeState.Victory:
                 floor.material.color=Color.green;
-                this.triggersVictory = true;    
+                this.triggersVictory = true;
+                this.tag = "Finish";
                 break;
 
 
