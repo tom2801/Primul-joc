@@ -6,6 +6,8 @@ using TMPro;
 public class optionScreen : MonoBehaviour
 {
 
+
+
     public List<LevelItem> levels = new List<LevelItem>();
     private int selectedLevel;
     public TMP_Text levelLabel;
@@ -64,6 +66,7 @@ public class optionScreen : MonoBehaviour
             selectedBall = 0;
         }
         UpdateBallLabel();
+        SphereGenerator.sphereMatIndex = selectedBall; //adugat de Radu
     }
 
     public void BallRight()
@@ -74,6 +77,7 @@ public class optionScreen : MonoBehaviour
             selectedBall = balls.Count - 1;
         }
         UpdateBallLabel();
+        SphereGenerator.sphereMatIndex = selectedBall; //adaugat de Radu
     }
 
     public void UpdateBallLabel()

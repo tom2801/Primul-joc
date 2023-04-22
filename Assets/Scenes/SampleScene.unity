@@ -319,10 +319,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 322865754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4299f2a7664c1da449b35f605b58ecee, type: 3}
+  m_Script: {fileID: 11500000, guid: 09dd1a6fbacc7d149a9846554089fe7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sphereSize: {x: 0.5, y: 0.5, z: 0.5}
+  sphereMats:
+  - {fileID: -876546973899608171, guid: f3a4ac8b14e6f734ab61f1009bff9b2d, type: 3}
+  - {fileID: -876546973899608171, guid: a8755f0d7f6f3df40be990cba8f042c9, type: 3}
+  - {fileID: -876546973899608171, guid: 026c71bcf1d55c84bb6fd23c9a00c9ed, type: 3}
+  - {fileID: -876546973899608171, guid: 5e88e4c21a8bfe34dbf153a275f1502e, type: 3}
+  spherePrefab: {fileID: 580286576546344624, guid: 1d49a3038bcaf5a418b8ad76aa89d930, type: 3}
 --- !u!4 &322865756
 Transform:
   m_ObjectHideFlags: 0
