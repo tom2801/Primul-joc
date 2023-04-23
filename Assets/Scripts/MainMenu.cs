@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// script realizat de Anna si Adela
+
 public class MainMenu : MonoBehaviour
 {
     public string Level;

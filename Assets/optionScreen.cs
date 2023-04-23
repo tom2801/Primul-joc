@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// script realizat de Anna si Adela
+
 public class optionScreen : MonoBehaviour
 {
 
