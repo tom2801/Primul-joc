@@ -12,6 +12,7 @@ public enum NodeState
 
 public class MazeNode : MonoBehaviour
 {
+    //[SerializeField] Material VictoryFloorMat ;
     [SerializeField] GameObject[] walls;
     [SerializeField] MeshRenderer floor;
     bool triggersVictory = false;
@@ -72,7 +73,8 @@ public class MazeNode : MonoBehaviour
                 floor.material.color = Color.blue;
                 break;
             case NodeState.Victory:
-                floor.material.color=Color.green;
+                //floor.material.color=Color.green;
+                //floor.GetComponent<Renderer>().material = VictoryFloorMat;
                 this.triggersVictory = true;
                 this.tag = "Finish";
                 break;

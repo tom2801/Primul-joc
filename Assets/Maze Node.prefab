@@ -220,6 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 110921627811583614}
   - component: {fileID: 8115316078638516157}
+  - component: {fileID: 1989875058863223918}
   m_Layer: 0
   m_Name: Maze Node
   m_TagString: Untagged
@@ -265,6 +266,23 @@ MonoBehaviour:
   - {fileID: 7185259801857238622}
   - {fileID: 6139891781018331402}
   floor: {fileID: 2880406591971706573}
+--- !u!114 &1989875058863223918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5700249845247519753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601d76c0fbef29444b080d30bcc34e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeNodeFloorMats:
+  - {fileID: 2100000, guid: 68ac720a666887a46b0bf179088d5c78, type: 2}
+  - {fileID: 2100000, guid: 2598cc8db3aca0a46839b9c3493a6be6, type: 2}
+  mazeNodeWallMats: []
+  victoryNodeMat: {fileID: 2100000, guid: e6b9b44320f4448d9d5e0ee634259966, type: 2}
 --- !u!1 &6139891781018331402
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +506,6 @@ GameObject:
   - component: {fileID: 2880406591971706573}
   - component: {fileID: 1058011338674221708}
   - component: {fileID: 3085818304845970073}
-  - component: {fileID: 9089205418855231365}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -609,18 +626,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 2
---- !u!114 &9089205418855231365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7735212958992537161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 601d76c0fbef29444b080d30bcc34e41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeNodeMats:
-  - {fileID: -876546973899608171, guid: 080e1d65e2d3b2948878579176f81b3a, type: 3}
-  - {fileID: -876546973899608171, guid: 4c2de329da65ded4db890a31a832a992, type: 3}
