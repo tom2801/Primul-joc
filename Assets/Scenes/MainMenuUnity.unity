@@ -4062,7 +4062,6 @@ MonoBehaviour:
   mazes:
   - MODEL 1
   - MODEL 2
-  - MODEL 3
   mazeLabel: {fileID: 25962394}
 --- !u!1 &1419118574
 GameObject:

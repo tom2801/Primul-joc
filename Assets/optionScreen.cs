@@ -96,6 +96,7 @@ public class optionScreen : MonoBehaviour
             selectedMaze = 0;
         }
         UpdateMazeLabel();
+        NodeMatSelector.mazeMatIndex = selectedMaze;
     }
 
     public void MazeRight()
@@ -106,6 +107,7 @@ public class optionScreen : MonoBehaviour
             selectedMaze = mazes.Count - 1;
         }
         UpdateMazeLabel();
+        NodeMatSelector.mazeMatIndex = selectedMaze;
     }
 
     public void UpdateMazeLabel()
