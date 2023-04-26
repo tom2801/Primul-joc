@@ -3,17 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEngine.AI;
+
 
 public class MazeGenerator : MonoBehaviour
 {
+
     [SerializeField] MazeNode nodePrefab;
     [SerializeField] Vector2Int mazeSize;
     [SerializeField] float nodeSize;
     [SerializeField] float velocity = 50;
+    [SerializeField] List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
+
     private void Start()
     {
         GenerateMazeInstant(mazeSize);
         //StartCoroutine(GenerateMaze(mazeSize));
+
+        // Update NavMesh
+      
+        foreach(var surface in surfaces)
+        {
+            surface.BuildNavMesh();
+        }
     }
     public Vector3 getCorner()
     {
@@ -107,6 +119,7 @@ public class MazeGenerator : MonoBehaviour
                 Vector3 nodePos = new Vector3(x - (size.x / 2f), 0, y - (size.y / 2f));
                 MazeNode newNode = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
                 nodes.Add(newNode);
+                surfaces.Add(newNode.surface);
             }
         }
 

@@ -711,6 +711,7 @@ MonoBehaviour:
   mazeSize: {x: 7, y: 7}
   nodeSize: 0
   velocity: 50
+  surfaces: []
 --- !u!4 &1510357893
 Transform:
   m_ObjectHideFlags: 0

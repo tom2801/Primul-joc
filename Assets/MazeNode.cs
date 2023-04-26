@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum NodeState
 {
@@ -15,6 +16,7 @@ public class MazeNode : MonoBehaviour
     //[SerializeField] Material VictoryFloorMat ;
     [SerializeField] GameObject[] walls;
     [SerializeField] MeshRenderer floor;
+    [SerializeField] public NavMeshSurface surface;
     bool triggersVictory = false;
     bool isOver = false;
     public bool TriggersVictory()
