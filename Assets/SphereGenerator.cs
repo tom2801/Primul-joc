@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SphereGenerator : MonoBehaviour
 {   
@@ -17,8 +18,7 @@ public class SphereGenerator : MonoBehaviour
 
         GameObject Sphere = Instantiate(spherePrefab, spherePoz, Quaternion.identity, transform); // se creaza sfera 
         Sphere.GetComponent<Renderer>().material = sphereMats[sphereMatIndex]; // se selecteaza materialul
-        Sphere.tag = "Player"; 
-        
+        Sphere.tag = "Player";
     }
 
 }

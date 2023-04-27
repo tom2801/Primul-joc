@@ -21,7 +21,6 @@ public class MazeGenerator : MonoBehaviour
         //StartCoroutine(GenerateMaze(mazeSize));
 
         // Update NavMesh
-      
         foreach(var surface in surfaces)
         {
             surface.BuildNavMesh();

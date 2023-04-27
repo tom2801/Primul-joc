@@ -118,7 +118,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
@@ -240,7 +240,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
@@ -270,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 4481779389463561058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1.1, y: 0.1, z: 1.1}
+  m_LocalScale: {x: 1.1, y: 0.25, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 110921627811583614}
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: cae1e88e0bbaa754c98389ae4f6b4f09, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4c4d0c5eb5575e14cbed3524dfa1bfc4, type: 2}
 --- !u!1 &5700249845247519753
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +498,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
@@ -620,7 +620,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
