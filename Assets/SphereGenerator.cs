@@ -9,6 +9,7 @@ public class SphereGenerator : MonoBehaviour
     [SerializeField] GameObject spherePrefab;
 
     public static int sphereMatIndex = 0;
+    public static GameObject Sphere;
 
     void Start()
     {
@@ -16,9 +17,16 @@ public class SphereGenerator : MonoBehaviour
         MazeGenerator mazeGenObj = mazeGenGameObj.GetComponent<MazeGenerator>();
         Vector3 spherePoz = mazeGenObj.getCorner();
 
-        GameObject Sphere = Instantiate(spherePrefab, spherePoz, Quaternion.identity, transform); // se creaza sfera 
+        Sphere = Instantiate(spherePrefab, spherePoz, Quaternion.identity, transform); // se creaza sfera 
         Sphere.GetComponent<Renderer>().material = sphereMats[sphereMatIndex]; // se selecteaza materialul
         Sphere.tag = "Player";
+    }
+
+    void Update()
+    {
+/*        Rigidbody rb = Sphere.GetComponent<Rigidbody>();
+        if (Input.GetKeyDown(KeyCode.H))
+            rb.useGravity = false;*/
     }
 
 }

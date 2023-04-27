@@ -57,7 +57,8 @@ public class MazeNode : MonoBehaviour
 
     public void RemoveWall(int wallToRemove)
     {
-        walls[wallToRemove].gameObject.SetActive(false);
+        //walls[wallToRemove].gameObject.SetActive(false);
+        Destroy(walls[wallToRemove]);
     }
     public void SetState (NodeState state)
     {

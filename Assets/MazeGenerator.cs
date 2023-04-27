@@ -19,12 +19,6 @@ public class MazeGenerator : MonoBehaviour
     {
         GenerateMazeInstant(mazeSize);
         //StartCoroutine(GenerateMaze(mazeSize));
-
-        // Update NavMesh
-        foreach(var surface in surfaces)
-        {
-            surface.BuildNavMesh();
-        }
     }
     public Vector3 getCorner()
     {
@@ -46,9 +40,47 @@ public class MazeGenerator : MonoBehaviour
         return corner;
     }
 
-
     private void Update()
     {
+        // Build mesh
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Rigidbody rb = SphereGenerator.Sphere.GetComponent<Rigidbody>();
+
+            // Frezee sphere
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            rb.velocity = Vector3.zero;
+
+            // Deactivate gravity
+            rb.useGravity = false;
+
+            // Stop rotating
+
+            // Bake
+            foreach (var surface in surfaces)
+            {
+                surface.BuildNavMesh();
+            }
+        }
+
+        // Delete mesh
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            // RemoveNavMesh
+            NavMesh.RemoveAllNavMeshData();
+
+            Rigidbody rb = SphereGenerator.Sphere.GetComponent<Rigidbody>();
+
+            // Unfreeze sphere
+            rb.constraints = RigidbodyConstraints.None;
+
+            // Activte gravity
+            rb.useGravity = true;
+
+            // Start rotating
+
+        }
+
         float zRotation = this.transform.eulerAngles.z;
         float xRotation = this.transform.eulerAngles.x;
         float yRotation = this.transform.eulerAngles.y;
