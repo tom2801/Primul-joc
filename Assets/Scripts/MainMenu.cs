@@ -9,6 +9,9 @@ public class MainMenu : MonoBehaviour
 {
     public string Level;
 
+    // TODO: Add button to enable / disable AI from mainmenu
+    public static bool AI = true;
+
     public GameObject optionsScreen;
 
     // Start is called before the first frame update

@@ -14,11 +14,34 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] float nodeSize;
     [SerializeField] float velocity = 50;
     [SerializeField] List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
+    bool AI;
 
     private void Start()
     {
+        AI = MainMenu.AI;
+
         GenerateMazeInstant(mazeSize);
         //StartCoroutine(GenerateMaze(mazeSize));
+
+        if (AI)
+        {
+            Rigidbody rb = SphereGenerator.Sphere.GetComponent<Rigidbody>();
+
+            // Frezee sphere
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            rb.velocity = Vector3.zero;
+
+            // Deactivate gravity
+            rb.useGravity = false;
+
+            // Stop rotating
+
+            // Bake
+            foreach (var surface in surfaces)
+            {
+                surface.BuildNavMesh();
+            }
+        }
     }
     public Vector3 getCorner()
     {
@@ -42,99 +65,68 @@ public class MazeGenerator : MonoBehaviour
 
     private void Update()
     {
-        // Build mesh
-        if (Input.GetKeyDown(KeyCode.H))
+        if (AI)
         {
-            Rigidbody rb = SphereGenerator.Sphere.GetComponent<Rigidbody>();
+            // Stick to the ball
+            
+        }
+        else
+        {
+            float zRotation = this.transform.eulerAngles.z;
+            float xRotation = this.transform.eulerAngles.x;
+            float yRotation = this.transform.eulerAngles.y;
 
-            // Frezee sphere
-            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-            rb.velocity = Vector3.zero;
-
-            // Deactivate gravity
-            rb.useGravity = false;
-
-            // Stop rotating
-
-            // Bake
-            foreach (var surface in surfaces)
+            if ((int)zRotation == 35)
             {
-                surface.BuildNavMesh();
+                zRotation = 34.9f;
+                transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
             }
-        }
 
-        // Delete mesh
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            // RemoveNavMesh
-            NavMesh.RemoveAllNavMeshData();
+            if ((int)zRotation == 325)
+            {
+                zRotation = 326f;
+                transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
+            }
 
-            Rigidbody rb = SphereGenerator.Sphere.GetComponent<Rigidbody>();
+            if ((int)xRotation == 35)
+            {
+                xRotation = 34.9f;
+                transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
+            }
 
-            // Unfreeze sphere
-            rb.constraints = RigidbodyConstraints.None;
+            if ((int)xRotation == 325)
+            {
+                xRotation = 326f;
+                transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
+            }
 
-            // Activte gravity
-            rb.useGravity = true;
+            if (Input.GetKey(KeyCode.LeftArrow) && (zRotation < 35 || zRotation > 325))
+            {
 
-            // Start rotating
+                transform.Rotate(Vector3.forward * velocity * Time.deltaTime);
 
-        }
+            }
 
-        float zRotation = this.transform.eulerAngles.z;
-        float xRotation = this.transform.eulerAngles.x;
-        float yRotation = this.transform.eulerAngles.y;
+            if (Input.GetKey(KeyCode.RightArrow) && (zRotation < 35 || zRotation > 325))
+            {
+                transform.Rotate(-Vector3.forward * velocity * Time.deltaTime);
 
-        if((int)zRotation == 35)
-        {
-            zRotation = 34.9f;
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation) ;
-        }
+            }
 
-        if ((int)zRotation == 325)
-        {
-            zRotation = 326f;
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
-        }
+            if (Input.GetKey(KeyCode.UpArrow) && (xRotation < 35 || xRotation > 325))
+            {
+                //transform.Rotate(Vector3.right * velocity * Time.deltaTime);
+                transform.rotation = Quaternion.Euler(xRotation + velocity *
+                    Time.deltaTime, yRotation, zRotation);
 
-        if ((int)xRotation == 35)
-        {
-            xRotation = 34.9f;
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
-        }
+            }
 
-        if ((int)xRotation == 325)
-        {
-            xRotation = 326f;
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
-        }
-
-        if (Input.GetKey(KeyCode.LeftArrow) && (zRotation < 35 || zRotation > 325))
-        {   
-           
-            transform.Rotate(Vector3.forward * velocity * Time.deltaTime);
-
-        }
-
-        if (Input.GetKey(KeyCode.RightArrow) && (zRotation < 35 || zRotation > 325))
-        {
-            transform.Rotate(-Vector3.forward * velocity * Time.deltaTime);
-
-        }
-
-        if (Input.GetKey(KeyCode.UpArrow) && (xRotation <35 || xRotation > 325))
-        {
-            //transform.Rotate(Vector3.right * velocity * Time.deltaTime);
-            transform.rotation = Quaternion.Euler(xRotation+velocity*
-                Time.deltaTime,yRotation,zRotation);
-
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow) && (xRotation <= 35 || xRotation >= 325))
-        {
-            //transform.Rotate(-Vector3.right * velocity * Time.deltaTime);
-            transform.rotation = Quaternion.Euler(xRotation + -velocity *
-                Time.deltaTime, yRotation, zRotation);
+            if (Input.GetKey(KeyCode.DownArrow) && (xRotation <= 35 || xRotation >= 325))
+            {
+                //transform.Rotate(-Vector3.right * velocity * Time.deltaTime);
+                transform.rotation = Quaternion.Euler(xRotation + -velocity *
+                    Time.deltaTime, yRotation, zRotation);
+            }
         }
     }
 
@@ -150,7 +142,8 @@ public class MazeGenerator : MonoBehaviour
                 Vector3 nodePos = new Vector3(x - (size.x / 2f), 0, y - (size.y / 2f));
                 MazeNode newNode = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
                 nodes.Add(newNode);
-                surfaces.Add(newNode.surface);
+
+                if (AI) { surfaces.Add(newNode.surface); }
             }
         }
 
