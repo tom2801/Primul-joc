@@ -76,25 +76,25 @@ public class MazeGenerator : MonoBehaviour
             float xRotation = this.transform.eulerAngles.x;
             float yRotation = this.transform.eulerAngles.y;
 
-            if ((int)zRotation == 35)
+            if ((int)zRotation == 35 || (int)zRotation == 36)
             {
                 zRotation = 34.9f;
                 transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
             }
 
-            if ((int)zRotation == 325)
+            if ((int)zRotation == 325 || (int)zRotation == 324)
             {
                 zRotation = 326f;
                 transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
             }
 
-            if ((int)xRotation == 35)
+            if ((int)xRotation == 35 || (int)xRotation==36)
             {
                 xRotation = 34.9f;
                 transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
             }
 
-            if ((int)xRotation == 325)
+            if ((int)xRotation == 325 || (int)xRotation==324)
             {
                 xRotation = 326f;
                 transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
