@@ -14,11 +14,11 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] float nodeSize;
     [SerializeField] float velocity = 50;
     [SerializeField] List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
-    bool AI;
+    public static bool AI;
 
     private void Start()
     {
-        AI = MainMenu.AI;
+        //AI = MainMenu.AI;
 
         GenerateMazeInstant(mazeSize);
         //StartCoroutine(GenerateMaze(mazeSize));

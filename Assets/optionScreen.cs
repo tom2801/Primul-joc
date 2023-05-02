@@ -22,6 +22,10 @@ public class optionScreen : MonoBehaviour
     private int selectedMaze;
     public TMP_Text mazeLabel;
 
+    public List<string> Ais = new List<string>();
+    private int selectedAi;
+    public TMP_Text aiLabel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +63,48 @@ public class optionScreen : MonoBehaviour
         levelLabel.text = levels[selectedLevel].difficulty.ToString();
     }
 
+
+
+    public void AiLeft()
+    {
+        selectedAi--;
+        if (selectedAi < 0)
+        {
+            selectedAi = 0;
+        }
+        UpdateAiLabel();
+        if (selectedAi==1)
+        {
+            MazeGenerator.AI = true;
+        }
+        else
+        {
+            MazeGenerator.AI = false;
+        }
+    }
+
+    public void AiRight()
+    {
+        selectedAi++;
+        if (selectedAi > Ais.Count - 1)
+        {
+            selectedAi = Ais.Count - 1;
+        }
+        UpdateAiLabel();
+        if (selectedAi == 1)
+        {
+            MazeGenerator.AI = true;
+        }
+        else
+        {
+            MazeGenerator.AI = false;
+        }
+    }
+
+    public void UpdateAiLabel()
+    {
+        aiLabel.text = Ais[selectedAi];
+    }
 
     public void BallLeft()
     {
