@@ -16,8 +16,36 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
     public static bool AI;
 
+    public Vector3 getCorner()
+    {
+        Vector3 corner;
+        if (optionScreen.mazeSizeAuxiliar.x % 2 == 0)
+            corner = new Vector3(-optionScreen.mazeSizeAuxiliar.x / 2, 1, -optionScreen.mazeSizeAuxiliar.y / 2);
+
+        else corner = new Vector3(-0.5f - optionScreen.mazeSizeAuxiliar.x / 2, 1, -0.5f - optionScreen.mazeSizeAuxiliar.y / 2);
+        return corner;
+    }
+
+    public Vector3 getCorner1()
+    {
+        Vector3 corner;
+        if (mazeSize.x % 2 == 0)
+            corner = new Vector3(-mazeSize.x / 2, 1, -mazeSize.y / 2);
+
+        else corner = new Vector3(-0.5f - mazeSize.x / 2, 1, -0.5f - mazeSize.y / 2);
+        return corner;
+    }
+
     private void Start()
     {
+
+
+        if (optionScreen.mazeSizeAuxiliar != Vector2Int.zero)
+        {
+            mazeSize = optionScreen.mazeSizeAuxiliar;
+        }
+        
+        
         //AI = MainMenu.AI;
 
         GenerateMazeInstant(mazeSize);
@@ -43,15 +71,7 @@ public class MazeGenerator : MonoBehaviour
             }
         }
     }
-    public Vector3 getCorner()
-    {
-        Vector3 corner;
-        if (mazeSize.x % 2 == 0)
-            corner = new Vector3(-mazeSize.x / 2, 1, -mazeSize.y / 2);
 
-        else corner = new Vector3(-0.5f - mazeSize.x / 2, 1, -0.5f - mazeSize.y / 2);
-        return corner;
-    }
 
     public Vector3 getVictoryCorner()
     {

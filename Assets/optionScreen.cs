@@ -8,6 +8,7 @@ using TMPro;
 public class optionScreen : MonoBehaviour
 {
 
+    public static Vector2Int mazeSizeAuxiliar = new Vector2Int(3,3);
 
 
     public List<LevelItem> levels = new List<LevelItem>();
@@ -29,7 +30,7 @@ public class optionScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+  
     }
 
     // Update is called once per frame
@@ -45,6 +46,21 @@ public class optionScreen : MonoBehaviour
         {
             selectedLevel = 0;
         }
+        switch (selectedLevel)
+        {
+            case 0:
+                mazeSizeAuxiliar = new Vector2Int(3, 3);
+                break;
+            case 1:
+                mazeSizeAuxiliar = new Vector2Int(7, 7);
+                break;
+            case 2:
+                mazeSizeAuxiliar = new Vector2Int(10, 10);
+                break;
+            default:
+                mazeSizeAuxiliar = new Vector2Int(7, 7);
+                break;
+        }
         UpdateLevelLabel();
     }
 
@@ -54,6 +70,21 @@ public class optionScreen : MonoBehaviour
         if (selectedLevel > levels.Count - 1)
         {
             selectedLevel = levels.Count - 1;
+        }
+        switch (selectedLevel)
+        {
+            case 0:
+                mazeSizeAuxiliar = new Vector2Int(3, 3);
+                break;
+            case 1:
+                mazeSizeAuxiliar = new Vector2Int(7, 7);
+                break;
+            case 2:
+                mazeSizeAuxiliar = new Vector2Int(10, 10);
+                break;
+            default:
+                mazeSizeAuxiliar = new Vector2Int(7, 7);
+                break;
         }
         UpdateLevelLabel();
     }
